@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LED Matrix Controller</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <!-- Custom JavaScript -->
+    <script src="{{ url_for('static', filename='scripts.js') }}" defer></script>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">LED Matrix Controller</h1>
+        <form id="display-form" class="mt-4">
+            <div class="form-group">
+                <label for="song_title">Song Title:</label>
+                <input type="text" id="song_title" name="song_title" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="artist">Artist:</label>
+                <input type="text" id="artist" name="artist" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Display</button>
+        </form>
+        <div id="message" class="mt-4 text-center"></div>
+    </div>
+    <!-- Include Bootstrap JS -->
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+</body>
+</html>
