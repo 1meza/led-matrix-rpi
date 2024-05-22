@@ -7,13 +7,22 @@ document.addEventListener('DOMContentLoaded', function() {
             method: 'POST',
             body: formData
         })
-        .then(response => response.text())
+        .then(response => response.json())
         .then(data => {
-            document.getElementById('message').textContent = 'Text sent to LED Matrix!';
+            const messageDiv = document.getElementById('message');
+            if (data.status === 'success') {
+                messageDiv.textContent = data.message;
+                messageDiv.className = 'text-success';
+            } else {
+                messageDiv.textContent = data.message;
+                messageDiv.className = 'text-danger';
+            }
             form.reset();
         })
         .catch(error => {
-            document.getElementById('message').textContent = 'Error sending text to LED Matrix.';
+            const messageDiv = document.getElementById('message');
+            messageDiv.textContent = 'An error occurred while sending the text to the LED Matrix.';
+            messageDiv.className = 'text-danger';
             console.error('Error:', error);
         });
     });
