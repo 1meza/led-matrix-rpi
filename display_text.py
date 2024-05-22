@@ -1,28 +1,44 @@
 #!/usr/bin/python3
 
-
 from rgbmatrix import RGBMatrix, RGBMatrixOptions, graphics
 import sys
+import time
 from os import path
 
 options = RGBMatrixOptions()
 options.rows = 32
 options.cols = 64
-#options.chain_length = 0
-#options.parallel = 0
+# options.chain_length = 0
+# options.parallel = 0
 options.hardware_mapping = 'adafruit-hat'
 options.gpio_slowdown = 4
 
 try:
     matrix = RGBMatrix(options=options)
 except Exception as e:
-    print(f"Error: {e}")
+    print(f"Error initializing matrix: {e}")
     sys.exit(1)
 
 def display_text(text):
     canvas = matrix.CreateFrameCanvas()
     font = graphics.Font()
-    font.LoadFont("/home/goose/led-matrix/7x13.bdf")
+    font_path = "/home/goose/led-matrix/7x13.bdf"
+    
+    # Debugging: Print statements to ensure correct path and existence
+    print(f"Attempting to load font from: {font_path}")
+    if path.exists(font_path):
+        print("Font file exists.")
+    else:
+        print("Font file does not exist.")
+        sys.exit(1)
+    
+    try:
+        font.LoadFont(font_path)
+        print("Font loaded successfully.")
+    except Exception as e:
+        print(f"Error loading font: {e}")
+        sys.exit(1)
+
     textColor = graphics.Color(255, 0, 0)
     
     pos = canvas.width
@@ -44,5 +60,5 @@ if __name__ == "__main__":
     try:
         display_text(text)
     except Exception as e:
-        print(f"Error: {e}")
+        print(f"Error in display_text: {e}")
         sys.exit(1)
