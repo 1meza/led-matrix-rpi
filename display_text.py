@@ -23,7 +23,7 @@ except Exception as e:
 def display_text(text):
     canvas = matrix.CreateFrameCanvas()
     font = graphics.Font()
-    font_path = "/home/goose/led-matrix/7x13.bdf"
+    font_path = "/home/goose/rpi-rgb-led-matrix/fonts/7x14.bdf"
     
     # Debugging: Print statements to ensure correct path and existence
     print(f"Attempting to load font from: {font_path}")
